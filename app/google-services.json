@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "736960633059",
+    "firebase_url": "https://coffeebear592-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "coffeebear592",
+    "storage_bucket": "coffeebear592.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736960633059:android:e8590fc9b132be132c4dd6",
+        "android_client_info": {
+          "package_name": "com.example.coffeebear"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2NYleiXkkMPT7niW_BspS5tj9X1ZjSww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
