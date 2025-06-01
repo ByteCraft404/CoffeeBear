@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2"
+    android:background="@color/black">
+
+    <ScrollView
+        android:id="@+id/content_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_container"
+        android:fillViewport="true"> <!-- Important for some nested layouts -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/caramel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clipToOutline="true"
+        android:outlineProvider="background"
+        android:background="@drawable/rounded_corner_profile"
+        android:scaleType="centerCrop" /><!-- Self-closing tag -->
+
+
+
+    <ImageView
+
+        android:id="@+id/menuIcon"
+
+        android:layout_width="30dp"
+
+        android:layout_height="30dp"
+
+        android:layout_marginStart="24dp"
+
+        android:layout_marginTop="24dp"
+
+        android:src="@drawable/whitecheck"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" /> <!-- Self-closing tag -->
+
+
+
+    <TextView
+
+        android:id="@+id/greetingTextView"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+
+        android:layout_marginTop="24dp"
+
+        android:fontFamily="sans-serif-medium"
+
+        android:text="Good Morning"
+
+        android:textColor="@android:color/white"
+
+        android:textSize="28sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/menuIcon" /> <!-- Self-closing tag -->
+
+
+
+    <TextView
+
+        android:id="@+id/descriptionTextView"
+
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="24dp"
+
+        android:text="Elevate Your Coffee Experience: Discover, Brew, and Savor Every Cup with Ease."
+
+        android:textColor="#A0A0A0"
+
+        android:textSize="14sp"
+
+        app:layout_constraintEnd_toStartOf="@+id/filterIcon"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/greetingTextView" /> <!-- Self-closing tag -->
+
+
+
+    <EditText
+
+        android:id="@+id/searchEditText"
+
+        android:layout_width="0dp"
+
+        android:layout_height="48dp"
+
+        android:layout_marginStart="24dp"
+
+        android:layout_marginTop="24dp"
+
+        android:layout_marginEnd="16dp"
+
+        android:background="@drawable/search_background"
+
+        android:drawableStart="@drawable/ic_search"
+
+        android:drawablePadding="12dp"
+
+        android:hint="Search..."
+
+        android:inputType="text"
+
+        android:paddingStart="16dp"
+
+        android:paddingEnd="16dp"
+
+        android:textColor="@android:color/white"
+
+        android:textColorHint="@color/coffee_beige_light"
+
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toStartOf="@+id/filterIcon"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" /> <!-- Self-closing tag -->
+
+
+
+    <ImageView
+
+        android:id="@+id/filterIcon"
+
+        android:layout_width="48dp"
+
+        android:layout_height="48dp"
+
+        android:layout_marginTop="24dp"
+
+        android:layout_marginEnd="24dp"
+
+        android:background="@drawable/filter_background"
+
+        android:padding="10dp"
+
+        android:src="@drawable/filter"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" /> <!-- Self-closing tag -->
+
+
+
+            <HorizontalScrollView
+                android:id="@+id/categoryScrollView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchEditText">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/latteButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/coffee_brown_dark" android:minWidth="80dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="Latte"
+                        android:textAllCaps="false"
+                        android:textColor="#A0A0A0"
+                        android:textSize="16sp" />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/espressoButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/coffee_dark_text" android:minWidth="80dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="Espresso"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <Space
+                        android:layout_width="8dp"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/cappuccinoButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/coffee_brown_dark" android:minWidth="100dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="Cappuccino"
+                        android:textAllCaps="false"
+                        android:textColor="#A0A0A0"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView><!-- Closing tag for categoryScrollView -->
+
+
+
+            <HorizontalScrollView
+                android:id="@+id/coffeeScrollView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/categoryScrollView">
+
+                <LinearLayout
+                    android:id="@+id/coffeeLinearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/latteCardView"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="#1E1E1E"
+                        app:cardCornerRadius="24dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="16dp">
+
+                            <ImageView
+                                android:id="@+id/latteImageView"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/latte"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/latteNameTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Latte"
+                                android:textColor="@color/coffee_beige_light"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toStartOf="@+id/heartIconLatte"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/latteImageView" />
+
+                            <ImageView
+                                android:id="@+id/heartIconLatte"
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@drawable/ic_heart"
+                                app:layout_constraintEnd_toStartOf="@+id/ratingTextViewLatte"
+                                app:layout_constraintTop_toBottomOf="@+id/latteImageView" />
+
+                            <TextView
+                                android:id="@+id/ratingTextViewLatte"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="4.7"
+                                android:textColor="#FFC107"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/latteImageView" />
+
+                            <TextView
+                                android:id="@+id/latteDescriptionTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:text="Creamy"
+                                android:textColor="#A0A0A0"
+                                android:textSize="10sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/latteNameTextView" />
+
+                            <TextView
+                                android:id="@+id/lattePriceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="6dp"
+                                android:text="$5.50"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/latteDescriptionTextView" />
+
+                            <ImageView
+                                android:id="@+id/addButtonLatte"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@drawable/add_button_background"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_add"
+                                app:layout_constraintBottom_toBottomOf="@+id/lattePriceTextView"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/latteDescriptionTextView" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/espressoCardView"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="#1E1E1E"
+                        app:cardCornerRadius="16dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="6dp">
+
+                            <ImageView
+                                android:id="@+id/espressoImageView"
+                                android:layout_width="0dp"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/espresso"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/espressoNameTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Espresso"
+                                android:textColor="@color/coffee_beige_light"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/espressoImageView" />
+
+                            <ImageView
+                                android:id="@+id/heartIconEspresso"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="6dp"
+                                android:src="@drawable/ic_heart"
+                                app:layout_constraintEnd_toStartOf="@+id/ratingTextViewEspresso"
+                                app:layout_constraintTop_toBottomOf="@+id/espressoImageView" />
+
+                            <TextView
+                                android:id="@+id/ratingTextViewEspresso"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="12dp"
+                                android:text="4.5"
+                                android:textColor="#FFC107"
+                                android:textSize="14sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/espressoImageView" />
+
+                            <TextView
+                                android:id="@+id/espressoDescriptionTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="6dp"
+                                android:text="With Milk"
+                                android:textColor="#A0A0A0"
+                                android:textSize="12sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/espressoNameTextView" />
+
+                            <TextView
+                                android:id="@+id/espressoPriceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="8dp"
+                                android:text="$6.50"
+                                android:textColor="@android:color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/espressoDescriptionTextView" />
+
+                            <ImageView
+                                android:id="@+id/addButtonEspresso"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginEnd="12dp"
+                                android:background="@drawable/add_button_background"
+                                android:padding="7dp"
+                                android:src="@drawable/ic_add"
+                                app:layout_constraintBottom_toBottomOf="@+id/espressoPriceTextView"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/espressoDescriptionTextView" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cappuccinoCardView"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="#1E1E1E"
+                        app:cardCornerRadius="16dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="24dp">
+
+                            <ImageView
+                                android:id="@+id/cappuccinoImageView"
+                                android:layout_width="0dp"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/cappuchino"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/cappuccinoNameTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:text="Cappuccino"
+                                android:textColor="@color/coffee_beige_light"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cappuccinoImageView" />
+
+                            <ImageView
+                                android:id="@+id/heartIconCappuccino"
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@drawable/ic_heart"
+                                app:layout_constraintEnd_toStartOf="@+id/ratingTextViewCappuccino"
+                                app:layout_constraintTop_toBottomOf="@+id/cappuccinoImageView" />
+
+                            <TextView
+                                android:id="@+id/ratingTextViewCappuccino"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="4.8"
+                                android:textColor="#FFC107"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cappuccinoImageView" />
+
+                            <TextView
+                                android:id="@+id/cappuccinoDescriptionTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:text="With Foam"
+                                android:textColor="#A0A0A0"
+                                android:textSize="10sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cappuccinoNameTextView" />
+
+                            <TextView
+                                android:id="@+id/cappuccinoPriceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="6dp"
+                                android:text="$7.20"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cappuccinoDescriptionTextView" />
+
+                            <ImageView
+                                android:id="@+id/addButtonCappuccino"
+                                android:layout_width="28dp"
+                                android:layout_height="28dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@drawable/add_button_background"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_add"
+                                app:layout_constraintBottom_toBottomOf="@+id/cappuccinoPriceTextView"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/cappuccinoDescriptionTextView" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+            <!-- Closing tag for coffeeScrollView -->
+
+
+    <TextView
+        android:id="@+id/specialOfferTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Special Offer 😉"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coffeeScrollView" />
+
+    <HorizontalScrollView
+        android:id="@+id/specialOfferScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specialOfferTextView">
+
+        <LinearLayout
+            android:id="@+id/specialOfferLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="@color/coffee_beige_light"
+                app:cardCornerRadius="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/burgerCardView"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/burgerImageView"
+                        android:layout_width="120dp"
+                        android:layout_height="90dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/burger"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:clipToOutline="true"
+                        android:outlineProvider="background"
+                        android:background="@drawable/rounded_corner_image" />
+
+                    <TextView
+                        android:id="@+id/burgerNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Burger"
+                        android:textColor="@color/coffee_brown_dark"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@+id/burgerImageView"
+                        app:layout_constraintTop_toTopOf="@+id/burgerImageView" />
+
+                    <ImageView
+                        android:id="@+id/heartIconBurger"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/ic_heart"
+                        app:layout_constraintStart_toEndOf="@+id/burgerImageView"
+                        app:layout_constraintTop_toBottomOf="@+id/burgerNameTextView" />
+
+                    <TextView
+                        android:id="@+id/ratingTextViewBurger"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="4.5"
+                        android:textColor="#FFC107"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/heartIconBurger"
+                        app:layout_constraintTop_toTopOf="@+id/heartIconBurger" />
+
+                    <TextView
+                        android:id="@+id/burgerPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="$6.50"
+                        android:textColor="@color/coffee_brown_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/burgerImageView"
+                        app:layout_constraintTop_toBottomOf="@+id/heartIconBurger" />
+
+                    <ImageView
+                        android:id="@+id/addButtonBurger"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/add_button_background"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_add"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="@color/coffee_beige_light"
+                app:cardCornerRadius="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/frenchToastCardView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp" >
+
+                    <ImageView
+                        android:id="@+id/frenchToastImageView"
+                        android:layout_width="120dp"
+                        android:layout_height="90dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/frenchtoast"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:clipToOutline="true"
+                        android:outlineProvider="background"
+                        android:background="@drawable/rounded_corner_image" />
+
+
+                    <TextView
+                        android:id="@+id/frenchToastNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="French Toast"
+                        android:textColor="@color/coffee_brown_dark"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toEndOf="@+id/frenchToastImageView"
+                        app:layout_constraintTop_toTopOf="@+id/frenchToastImageView" />
+
+                    <ImageView
+                        android:id="@+id/heartIconFrenchToast"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/ic_heart"
+                        app:layout_constraintStart_toEndOf="@+id/frenchToastImageView"
+                        app:layout_constraintTop_toBottomOf="@+id/frenchToastNameTextView" />
+
+                    <TextView
+                        android:id="@+id/ratingTextViewFrenchToast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="4.9"
+                        android:textColor="#FFC107"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toEndOf="@+id/heartIconFrenchToast"
+                        app:layout_constraintTop_toTopOf="@+id/heartIconFrenchToast" />
+
+                    <TextView
+                        android:id="@+id/frenchToastPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="$8.00"
+                        android:textColor="@color/coffee_brown_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/frenchToastImageView"
+                        app:layout_constraintTop_toBottomOf="@+id/heartIconFrenchToast" />
+
+                    <ImageView
+                        android:id="@+id/addButtonFrenchToast"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/add_button_background"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_add"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/bottom_navigation_container"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/rounded_bottom_navigation"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_home"
+                app:tint="@color/coffee_dark_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="@color/coffee_beige_light"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/favoritesButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_heart_outline"
+                app:tint="@color/coffee_dark_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorites"
+                android:textColor="#A0A0A0"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:id="@+id/cartButton"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_shopping_bag_outline"
+                app:tint="@color/coffee_dark_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cart"
+                android:textColor="#A0A0A0"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profileButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_user_outline"
+                app:tint="@color/coffee_dark_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="#A0A0A0"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

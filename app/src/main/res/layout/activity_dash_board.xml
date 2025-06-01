@@ -1,58 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/coffee_beige_light"
-    tools:context=".DashBoardActivity">
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/fullscreenImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/your_coffee_image" /> <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    android:padding="32dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/getStartedTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="WELCOME TO THE DASHBOARD"
+        android:text="CoffeeBear."
+        android:textStyle="bold"
         android:textColor="@color/coffee_dark_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="29sp"
+        android:layout_marginBottom="8dp" />
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:textColorHint="@color/coffee_dark_text"
-        app:layout_constraintEnd_toStartOf="@+id/searchView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Brewing Perfection:\nIntroducing the Ultimate\nCoffee Companion App!"
+        android:textColor="@color/coffee_beige_light"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/nextButton"
+        android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="452dp"
-        android:backgroundTint="@color/coffee_dark_text"
-        android:text="Next"
-        android:textColor="@color/coffee_white_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        android:layout_marginLeft="60dp"
+        android:backgroundTint="@color/coffee_brown_dark"
+        android:paddingStart="32dp"
+        android:paddingEnd="38dp"
+        android:text="Next     \u2192"
+        android:textColor="@android:color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+</RelativeLayout>
