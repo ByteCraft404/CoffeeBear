@@ -9,6 +9,7 @@
     <color name="coffee_form_background">#ECE0D1</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
     <color name="coffee_button_background">#A0522D</color>
 </resources>
 

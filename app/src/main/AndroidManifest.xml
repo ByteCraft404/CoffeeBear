@@ -16,6 +16,9 @@
         android:theme="@style/Theme.CoffeeBear"
         tools:targetApi="31">
         <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
             android:name=".profile"
             android:exported="false" />
         <activity

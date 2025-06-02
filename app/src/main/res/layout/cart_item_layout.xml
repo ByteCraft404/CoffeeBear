@@ -6,15 +6,22 @@
     android:layout_height="wrap_content"
     android:padding="12dp">
 
-    <ImageView
-        android:id="@+id/itemImage"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageCardView"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/cappuchino"
-        android:contentDescription="@null" />
+        app:cardCornerRadius="8dp" app:cardElevation="0dp" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@drawable/cappuchino"
+            android:contentDescription="@null" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/itemName"
@@ -24,8 +31,8 @@
         android:text="Capuccino"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/itemImage"
-        app:layout_constraintTop_toTopOf="@+id/itemImage"
+        app:layout_constraintStart_toEndOf="@+id/imageCardView"
+        app:layout_constraintTop_toTopOf="@+id/imageCardView"
         app:layout_constraintEnd_toStartOf="@+id/itemPrice"
         android:layout_marginEnd="8dp" />
 
@@ -36,7 +43,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintStart_toEndOf="@+id/itemImage"
+        app:layout_constraintStart_toEndOf="@+id/imageCardView"
         app:layout_constraintTop_toBottomOf="@+id/itemName">
 
         <ImageView

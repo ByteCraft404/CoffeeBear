@@ -45,7 +45,7 @@ public class SigninActivity extends AppCompatActivity {
     Button btnSigninAction;
     TextView tvSignupTabOnSignin, tvForgotPassword;
     private FirebaseAuth mAuth;
-    ImageView fbIconSignin;
+
     ImageView googleIconSignin;
     GoogleSignInClient mGoogleSignInClient;
     private ActivityResultLauncher<Intent> googleSignInLauncher;
@@ -71,15 +71,10 @@ public class SigninActivity extends AppCompatActivity {
         btnSigninAction = findViewById(R.id.btn_signin_action);
         tvSignupTabOnSignin = findViewById(R.id.tv_signup_tab_on_signin);
         tvForgotPassword = findViewById(R.id.tv_forgot_password);
-        fbIconSignin = findViewById(R.id.icon_facebook_signin);
+
         googleIconSignin = findViewById(R.id.icon_google_signin);
 
-        // Set the Facebook icon if the ImageView is found
-        if (fbIconSignin != null) {
-            fbIconSignin.setImageResource(R.drawable.facebook);
-        } else {
-            Log.e("SigninActivity", "Facebook icon ImageView (signin) is null");
-        }
+
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

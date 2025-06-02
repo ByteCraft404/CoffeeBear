@@ -22,19 +22,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
-        android:id="@+id/profileImageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/caramel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clipToOutline="true"
-        android:outlineProvider="background"
-        android:background="@drawable/rounded_corner_profile"
-        android:scaleType="centerCrop" /><!-- Self-closing tag -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/caramel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:civ_border_width="0dp"
+                app:civ_border_color="@color/transparent" />
 
 
 
@@ -199,7 +198,7 @@
                         android:id="@+id/latteButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/coffee_brown_dark" android:minWidth="80dp"
+                        android:backgroundTint="@color/black" android:minWidth="80dp"
                         android:paddingStart="16dp"
                         android:paddingTop="8dp"
                         android:paddingEnd="16dp"
@@ -217,7 +216,7 @@
                         android:id="@+id/espressoButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/coffee_dark_text" android:minWidth="80dp"
+                        android:backgroundTint="@color/black" android:minWidth="80dp"
                         android:paddingStart="16dp"
                         android:paddingTop="8dp"
                         android:paddingEnd="16dp"
@@ -235,7 +234,7 @@
                         android:id="@+id/cappuccinoButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/coffee_brown_dark" android:minWidth="100dp"
+                        android:backgroundTint="@color/black" android:minWidth="100dp"
                         android:paddingStart="16dp"
                         android:paddingTop="8dp"
                         android:paddingEnd="16dp"
@@ -591,202 +590,216 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coffeeScrollView" />
 
-    <HorizontalScrollView
-        android:id="@+id/specialOfferScrollView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/specialOfferTextView">
-
-        <LinearLayout
-            android:id="@+id/specialOfferLinearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+            <HorizontalScrollView
+                android:id="@+id/specialOfferScrollView"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:cardBackgroundColor="@color/coffee_beige_light"
-                app:cardCornerRadius="16dp">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/specialOfferTextView">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/burgerCardView"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:id="@+id/burgerImageView"
-                        android:layout_width="120dp"
-                        android:layout_height="90dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/burger"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:clipToOutline="true"
-                        android:outlineProvider="background"
-                        android:background="@drawable/rounded_corner_image" />
-
-                    <TextView
-                        android:id="@+id/burgerNameTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Burger"
-                        android:textColor="@color/coffee_brown_dark"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toEndOf="@+id/burgerImageView"
-                        app:layout_constraintTop_toTopOf="@+id/burgerImageView" />
-
-                    <ImageView
-                        android:id="@+id/heartIconBurger"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_heart"
-                        app:layout_constraintStart_toEndOf="@+id/burgerImageView"
-                        app:layout_constraintTop_toBottomOf="@+id/burgerNameTextView" />
-
-                    <TextView
-                        android:id="@+id/ratingTextViewBurger"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="4.5"
-                        android:textColor="#FFC107"
-                        android:textSize="12sp"
-                        app:layout_constraintStart_toEndOf="@+id/heartIconBurger"
-                        app:layout_constraintTop_toTopOf="@+id/heartIconBurger" />
-
-                    <TextView
-                        android:id="@+id/burgerPriceTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="$6.50"
-                        android:textColor="@color/coffee_brown_dark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@+id/burgerImageView"
-                        app:layout_constraintTop_toBottomOf="@+id/heartIconBurger" />
-
-                    <ImageView
-                        android:id="@+id/addButtonBurger"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/add_button_background"
-                        android:padding="6dp"
-                        android:src="@drawable/ic_add"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:cardBackgroundColor="@color/coffee_beige_light"
-                app:cardCornerRadius="16dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/frenchToastCardView"
+                <LinearLayout
+                    android:id="@+id/specialOfferLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp" >
+                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/frenchToastImageView"
-                        android:layout_width="120dp"
-                        android:layout_height="90dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/frenchtoast"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:clipToOutline="true"
-                        android:outlineProvider="background"
-                        android:background="@drawable/rounded_corner_image" />
-
-
-                    <TextView
-                        android:id="@+id/frenchToastNameTextView"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="French Toast"
-                        android:textColor="@color/coffee_brown_dark"
-                        android:textSize="16sp"
-                        app:layout_constraintStart_toEndOf="@+id/frenchToastImageView"
-                        app:layout_constraintTop_toTopOf="@+id/frenchToastImageView" />
+                        android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="@color/coffee_beige_light"
+                        app:cardCornerRadius="16dp">
 
-                    <ImageView
-                        android:id="@+id/heartIconFrenchToast"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_heart"
-                        app:layout_constraintStart_toEndOf="@+id/frenchToastImageView"
-                        app:layout_constraintTop_toBottomOf="@+id/frenchToastNameTextView" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/burgerCardView"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/ratingTextViewFrenchToast"
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/burgerImageCardView"
+                                android:layout_width="120dp"
+                                android:layout_height="90dp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/burgerImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/burger" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                android:id="@+id/burgerNameTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Burger"
+                                android:textColor="@color/coffee_brown_dark"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toEndOf="@+id/burgerImageCardView"
+                                app:layout_constraintTop_toTopOf="@+id/burgerImageCardView"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/heartIconBurger"
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:src="@drawable/ic_heart"
+                                app:layout_constraintStart_toEndOf="@+id/burgerImageCardView"
+                                app:layout_constraintTop_toBottomOf="@+id/burgerNameTextView" />
+
+                            <TextView
+                                android:id="@+id/ratingTextViewBurger"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="4.5"
+                                android:textColor="#FFC107"
+                                android:textSize="12sp"
+                                app:layout_constraintStart_toEndOf="@+id/heartIconBurger"
+                                app:layout_constraintTop_toTopOf="@+id/heartIconBurger" />
+
+                            <TextView
+                                android:id="@+id/burgerPriceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:text="$6.50"
+                                android:textColor="@color/coffee_brown_dark"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toEndOf="@+id/burgerImageCardView"
+                                app:layout_constraintTop_toBottomOf="@+id/heartIconBurger" />
+
+                            <ImageView
+                                android:id="@+id/addButtonBurger"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/add_button_background"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_add"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="4.9"
-                        android:textColor="#FFC107"
-                        android:textSize="12sp"
-                        app:layout_constraintStart_toEndOf="@+id/heartIconFrenchToast"
-                        app:layout_constraintTop_toTopOf="@+id/heartIconFrenchToast" />
-
-                    <TextView
-                        android:id="@+id/frenchToastPriceTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="$8.00"
-                        android:textColor="@color/coffee_brown_dark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@+id/frenchToastImageView"
-                        app:layout_constraintTop_toBottomOf="@+id/heartIconFrenchToast" />
+                        android:layout_marginEnd="8dp"
+                        app:cardBackgroundColor="@color/coffee_beige_light"
+                        app:cardCornerRadius="16dp">
 
-                    <ImageView
-                        android:id="@+id/addButtonFrenchToast"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/add_button_background"
-                        android:padding="6dp"
-                        android:src="@drawable/ic_add"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/frenchToastCardView"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp" >
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/frenchToastImageCardView"
+                                android:layout_width="120dp"
+                                android:layout_height="90dp"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-            </androidx.cardview.widget.CardView>
+                                <ImageView
+                                    android:id="@+id/frenchToastImageView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/frenchtoast" />
 
-        </LinearLayout>
+                            </androidx.cardview.widget.CardView>
 
-    </HorizontalScrollView>
+                            <TextView
+                                android:id="@+id/frenchToastNameTextView"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="French Toast"
+                                android:textColor="@color/coffee_brown_dark"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toEndOf="@+id/frenchToastImageCardView"
+                                app:layout_constraintTop_toTopOf="@+id/frenchToastImageCardView"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/heartIconFrenchToast"
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="4dp"
+                                android:src="@drawable/ic_heart"
+                                app:layout_constraintStart_toEndOf="@+id/frenchToastImageCardView"
+                                app:layout_constraintTop_toBottomOf="@+id/frenchToastNameTextView" />
+
+                            <TextView
+                                android:id="@+id/ratingTextViewFrenchToast"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:text="4.9"
+                                android:textColor="#FFC107"
+                                android:textSize="12sp"
+                                app:layout_constraintStart_toEndOf="@+id/heartIconFrenchToast"
+                                app:layout_constraintTop_toTopOf="@+id/heartIconFrenchToast" />
+
+                            <TextView
+                                android:id="@+id/frenchToastPriceTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginTop="8dp"
+                                android:text="$8.00"
+                                android:textColor="@color/coffee_brown_dark"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toEndOf="@+id/frenchToastImageCardView"
+                                app:layout_constraintTop_toBottomOf="@+id/heartIconFrenchToast" />
+
+                            <ImageView
+                                android:id="@+id/addButtonFrenchToast"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/add_button_background"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_add"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
 
 
