@@ -37,7 +37,7 @@ public class EditProfile extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        // Initialize UI elements
+
         backButton = findViewById(R.id.backButton);
         profileImageView = findViewById(R.id.profileImageView);
         editIconImageView = findViewById(R.id.editIconImageView);
