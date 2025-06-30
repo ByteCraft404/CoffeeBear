@@ -57,14 +57,14 @@ public class SigninActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         ConstraintLayout contentAreaSignin = findViewById(R.id.content_area_signin);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            float blurRadius = 20.0f;
-            contentAreaSignin.setRenderEffect(RenderEffect.createBlurEffect(blurRadius, blurRadius, Shader.TileMode.CLAMP));
-        }
+
 
         etEmailSignin = findViewById(R.id.et_email_signin);
         etPasswordSignin = findViewById(R.id.et_password_signin);

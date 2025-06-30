@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,18 +35,43 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
     private ImageView backButton;
     private RecyclerView cartRecyclerView;
     private TextView totalAmountTextView;
-    private Button checkoutButton;
+    private Button checkoutButton; // Fixed: Changed to Button
     private CartAdapter cartAdapter;
     private List<CartItem> cartItemList;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
+    // Bottom Navigation Views
+    private LinearLayout homeButton;
+    private LinearLayout favoritesButton;
+    private LinearLayout cartButton;
+    private LinearLayout profileButton;
+
+    private ImageView homeIcon;
+    private ImageView favoritesIcon;
+    private ImageView cartIcon;
+    private ImageView profileIcon;
+
+    private TextView homeText;
+    private TextView favoritesText;
+    private TextView cartText;
+    private TextView profileText;
+
+    private int colorCoffeeBeigeLight;
+    private int colorA0A0A0;
+    private int colorCoffeeDarkText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cart);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -59,7 +86,29 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
         backButton = findViewById(R.id.backButton);
         cartRecyclerView = findViewById(R.id.cartRecyclerView);
         totalAmountTextView = findViewById(R.id.totalAmount);
-        checkoutButton = findViewById(R.id.checkoutButton);
+        checkoutButton = findViewById(R.id.checkoutButton); // Assigned the Button here
+
+
+        // Initialize Bottom Navigation Views using the provided IDs
+        homeButton = findViewById(R.id.homeButton);
+        favoritesButton = findViewById(R.id.favoritesButton);
+        cartButton = findViewById(R.id.cartButton);
+        profileButton = findViewById(R.id.profileButton);
+
+        // Find ImageView and TextView within each LinearLayout
+        homeIcon = homeButton.findViewById(R.id.homeIcon); // Ensure these IDs exist in your XML
+        homeText = homeButton.findViewById(R.id.homeText);   // Ensure these IDs exist in your XML
+        favoritesIcon = favoritesButton.findViewById(R.id.favoritesIcon); // Ensure these IDs exist in your XML
+        favoritesText = favoritesButton.findViewById(R.id.favoritesText);   // Ensure these IDs exist in your XML
+        cartIcon = cartButton.findViewById(R.id.cartIcon); // Ensure these IDs exist in your XML
+        cartText = cartButton.findViewById(R.id.cartText);   // Ensure these IDs exist in your XML
+        profileIcon = profileButton.findViewById(R.id.profileIcon); // Ensure these IDs exist in your XML
+        profileText = profileButton.findViewById(R.id.profileText);   // Ensure these IDs exist in your XML
+
+        // Get color values from resources
+        colorCoffeeBeigeLight = getResources().getColor(R.color.coffee_beige_light, getTheme());
+        colorA0A0A0 = getResources().getColor(android.R.color.darker_gray, getTheme()); // Using darker_gray as a close alternative to #A0A0A0
+        colorCoffeeDarkText = getResources().getColor(R.color.coffee_dark_text, getTheme());
 
         // Set up RecyclerView
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -84,6 +133,44 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
             Toast.makeText(this, "Checkout clicked", Toast.LENGTH_SHORT).show();
             // Implement your checkout logic here
         });
+
+        // Set up bottom navigation click listeners
+        homeButton.setOnClickListener(v -> navigateTo(MainActivity2.class));
+        favoritesButton.setOnClickListener(v -> navigateTo(Favourites.class)); // Replace with your Favorites Activity
+        cartButton.setOnClickListener(v -> {}); // Already on Cart Activity
+        profileButton.setOnClickListener(v -> navigateTo(profile.class)); // Replace with your Profile Activity
+
+        // Set default selected button to Cart and change its color
+        setDefaultSelected();
+    }
+
+    private void setDefaultSelected() {
+        // Reset colors of all buttons
+        if (homeIcon != null && homeText != null) {
+            homeIcon.setColorFilter(colorCoffeeDarkText);
+            homeText.setTextColor(colorCoffeeBeigeLight);
+        }
+
+        if (favoritesIcon != null && favoritesText != null) {
+            favoritesIcon.setColorFilter(colorCoffeeDarkText);
+            favoritesText.setTextColor(colorA0A0A0);
+        }
+
+        if (cartIcon != null && cartText != null) {
+            cartIcon.setColorFilter(colorCoffeeBeigeLight);
+            cartText.setTextColor(colorCoffeeBeigeLight);
+        }
+
+        if (profileIcon != null && profileText != null) {
+            profileIcon.setColorFilter(colorCoffeeDarkText);
+            profileText.setTextColor(colorA0A0A0);
+        }
+    }
+
+    private void navigateTo(Class<?> destination) {
+        Intent intent = new Intent(Cart.this, destination);
+        startActivity(intent);
+        finish();
     }
 
     private void fetchCartItems() {

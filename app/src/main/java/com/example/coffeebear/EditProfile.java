@@ -3,6 +3,8 @@ package com.example.coffeebear;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,11 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
 
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -55,7 +62,9 @@ public class EditProfile extends AppCompatActivity {
         }
 
         // Set up listeners
-        backButton.setOnClickListener(v -> finish()); // Go back to the previous screen
+        backButton.setOnClickListener(v -> {
+            finish(); // Go back to the previous screen (ProfileActivity)
+        });
         logoutButton.setOnClickListener(v -> logoutUser());
         updateButton.setOnClickListener(v -> updateProfile());
         editIconImageView.setOnClickListener(v -> showImageNotEditableToast());
