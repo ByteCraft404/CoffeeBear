@@ -30,6 +30,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        // viewBinding true
+    }
 }
 
 dependencies {
@@ -37,13 +40,20 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.database)
-    implementation(libs.firebase.auth)
-    implementation ("com.google.android.gms:play-services-auth:21.1.0")
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    implementation(libs.firebase.firestore)
-    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
+
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
+
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+    implementation("com.ismaeldivita.chipnavigation:chip-navigation-bar:1.4.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

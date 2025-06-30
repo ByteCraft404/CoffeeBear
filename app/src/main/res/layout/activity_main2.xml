@@ -15,8 +15,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_container"
-        android:fillViewport="true"> <!-- Important for some nested layouts -->
+        app:layout_constraintBottom_toTopOf="@+id/bottomnav"
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,147 +35,75 @@
                 app:civ_border_width="0dp"
                 app:civ_border_color="@color/transparent" />
 
-
-
-    <ImageView
-
-        android:id="@+id/menuIcon"
-
-        android:layout_width="30dp"
-
-        android:layout_height="30dp"
-
-        android:layout_marginStart="24dp"
-
-        android:layout_marginTop="24dp"
-
-        android:src="@drawable/whitecheck"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent" /> <!-- Self-closing tag -->
-
-
-
-    <TextView
-
-        android:id="@+id/greetingTextView"
-
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-
-        android:layout_marginTop="24dp"
-
-        android:fontFamily="sans-serif-medium"
-
-        android:text="Good Morning"
-
-        android:textColor="@android:color/white"
-
-        android:textSize="28sp"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/menuIcon" /> <!-- Self-closing tag -->
-
-
-
-    <TextView
-
-        android:id="@+id/descriptionTextView"
-
-        android:layout_width="0dp"
-
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-
-        android:layout_marginTop="8dp"
-
-        android:layout_marginEnd="24dp"
-
-        android:text="Elevate Your Coffee Experience: Discover, Brew, and Savor Every Cup with Ease."
-
-        android:textColor="#A0A0A0"
-
-        android:textSize="14sp"
-
-        app:layout_constraintEnd_toStartOf="@+id/filterIcon"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/greetingTextView" /> <!-- Self-closing tag -->
-
-
-
-    <EditText
-
-        android:id="@+id/searchEditText"
-
-        android:layout_width="0dp"
-
-        android:layout_height="48dp"
-
-        android:layout_marginStart="24dp"
-
-        android:layout_marginTop="24dp"
-
-        android:layout_marginEnd="16dp"
-
-        android:background="@drawable/search_background"
-
-        android:drawableStart="@drawable/ic_search"
-
-        android:drawablePadding="12dp"
-
-        android:hint="Search..."
-
-        android:inputType="text"
-
-        android:paddingStart="16dp"
-
-        android:paddingEnd="16dp"
-
-        android:textColor="@android:color/white"
-
-        android:textColorHint="@color/coffee_beige_light"
-
-        android:textSize="16sp"
-
-        app:layout_constraintEnd_toStartOf="@+id/filterIcon"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" /> <!-- Self-closing tag -->
-
-
-
-    <ImageView
-
-        android:id="@+id/filterIcon"
-
-        android:layout_width="48dp"
-
-        android:layout_height="48dp"
-
-        android:layout_marginTop="24dp"
-
-        android:layout_marginEnd="24dp"
-
-        android:background="@drawable/filter_background"
-
-        android:padding="10dp"
-
-        android:src="@drawable/filter"
-
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" /> <!-- Self-closing tag -->
-
-
+            <ImageView
+                android:id="@+id/menuIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/whitecheck"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/greetingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Good Morning"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/menuIcon" />
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Elevate Your Coffee Experience: Discover, Brew, and Savor Every Cup with Ease."
+                android:textColor="#A0A0A0"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/filterIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/greetingTextView" />
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/search_background"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="12dp"
+                android:hint="Search..."
+                android:inputType="text"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/coffee_beige_light"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/filterIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+            <ImageView
+                android:id="@+id/filterIcon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/filter_background"
+                android:padding="10dp"
+                android:src="@drawable/filter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
 
             <HorizontalScrollView
                 android:id="@+id/categoryScrollView"
@@ -246,9 +174,7 @@
 
                 </LinearLayout>
 
-            </HorizontalScrollView><!-- Closing tag for categoryScrollView -->
-
-
+            </HorizontalScrollView>
 
             <HorizontalScrollView
                 android:id="@+id/coffeeScrollView"
@@ -574,21 +500,19 @@
                 </LinearLayout>
 
             </HorizontalScrollView>
-            <!-- Closing tag for coffeeScrollView -->
 
-
-    <TextView
-        android:id="@+id/specialOfferTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Special Offer 😉"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coffeeScrollView" />
+            <TextView
+                android:id="@+id/specialOfferTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Special Offer 😉"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coffeeScrollView" />
 
             <HorizontalScrollView
                 android:id="@+id/specialOfferScrollView"
@@ -802,113 +726,16 @@
 
     </ScrollView>
 
-
-
-
-    <LinearLayout
-        android:id="@+id/bottom_navigation_container"
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottomnav"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@drawable/rounded_bottom_navigation"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:id="@+id/homeButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_home"
-                app:tint="@color/coffee_dark_text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:textColor="@color/coffee_beige_light"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/favoritesButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_heart_outline"
-                app:tint="@color/coffee_dark_text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Favorites"
-                android:textColor="#A0A0A0"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:id="@+id/cartButton"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_shopping_bag_outline"
-                app:tint="@color/coffee_dark_text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cart"
-                android:textColor="#A0A0A0"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/profileButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_user_outline"
-                app:tint="@color/coffee_dark_text" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Profile"
-                android:textColor="#A0A0A0"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
+        app:cnb_iconSize="24dp"
+        app:cnb_menuResource="@menu/bottom_nav_menu"
+        app:cnb_unselectedColor="#A0A0A0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

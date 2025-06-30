@@ -78,7 +78,7 @@ public class SigninActivity extends AppCompatActivity {
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id)) // Ensure you have this in your strings.xml
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
@@ -135,7 +135,7 @@ public class SigninActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user != null) {
                                     Toast.makeText(SigninActivity.this, "Sign In Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SigninActivity.this, DashBoardActivity.class);
+                                    Intent intent = new Intent(SigninActivity.this, MainActivity2.class);
                                     startActivity(intent);
                                     finish();
                                 } else {

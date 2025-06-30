@@ -1,83 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@android:color/black">
 
-    <!-- Fullscreen Background Image (behind everything) -->
     <ImageView
-        android:id="@+id/img_welcome_coffee"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/fullscreenImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/your_welcome_image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:src="@drawable/your_coffee_image" /> <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical"
+    android:padding="32dp">
 
-    <!-- Foreground Content Area (on top of image) -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/content_area_signin"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="420dp"
-        android:background="@drawable/rounded_top_corners"
-        android:backgroundTint="@color/coffee_beige_light"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/getStartedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CoffeeBear."
+        android:textStyle="bold"
+        android:textColor="#00897B"
+        android:textSize="29sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Brewing Perfection:\nIntroducing the Ultimate\nCoffee Companion App!"
+        android:textColor="@color/coffee_beige_light"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btn_main_action"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:backgroundTint="@color/coffee_brown_dark"
         android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:paddingTop="24dp">
+        android:paddingEnd="38dp"
+        android:text="Next     \u2192"
+        android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/tv_welcome_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Welcome to CoffeeBear"
-            android:textColor="@color/coffee_brown_dark"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+</LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_welcome_subtitle"
-            android:layout_width="342dp"
-            android:layout_height="98dp"
-            android:layout_marginTop="36dp"
-            android:text="Get wide range of speciality coffee, tea and beverages."
-            android:textAlignment="center"
-            android:textColor="@color/coffee_brown_dark"
-            android:textSize="19sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_welcome_title" />
-
-        <Button
-            android:id="@+id/btn_main_action"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="40dp"
-            android:backgroundTint="@color/coffee_brown_dark"
-            android:text="GET STARTED"
-            android:textColor="@color/coffee_white_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_welcome_subtitle" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

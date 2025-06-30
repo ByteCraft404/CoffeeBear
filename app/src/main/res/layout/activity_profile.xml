@@ -1,218 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/coffee_form_background"
+    tools:context=".MainActivity2">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/coffee_form_background"
-        android:padding="16dp">
+    <ScrollView
+        android:id="@+id/content_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomnav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/profileTextView"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Profile"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/coffee_dark_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profileImageCardView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="50dp"
-            app:cardCornerRadius="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileTextView">
-
-            <ImageView
-                android:id="@+id/profileImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/cappuchino" />
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Coffee Bear"
-            android:textSize="20sp"
-            android:textColor="#212121"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileImageCardView" />
-
-        <LinearLayout
-            android:id="@+id/emailLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nameTextView">
+            android:padding="16dp">
 
             <TextView
-                android:id="@+id/emailTextView"
+                android:id="@+id/profileTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="albertflores@mail.com"
+                android:layout_marginTop="32dp"
+                android:text="Profile"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/coffee_dark_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileImageCardView"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="50dp"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profileTextView">
+
+                <ImageView
+                    android:id="@+id/profileImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/cappuchino" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Coffee Bear"
+                android:textSize="20sp"
+                android:textColor="#212121"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profileImageCardView" />
+
+            <LinearLayout
+                android:id="@+id/emailLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nameTextView">
+
+                <TextView
+                    android:id="@+id/emailTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="albertflores@mail.com"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/ic_verified"
+                    app:tint="#4CAF50" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/editProfileButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rounded_button_outline"
+                app:backgroundTint="@null"
+                android:paddingVertical="12dp"
+                android:text="@string/edit_profile"
+                android:textColor="@color/coffee_brown_dark"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailLayout" />
 
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="4dp"
-                android:src="@drawable/ic_verified"
-                app:tint="#4CAF50" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/rounded_button_outline"
-            android:backgroundTint="@null"
-            android:paddingVertical="12dp"
-            android:text="Edit Profile"
-            android:textColor="@color/coffee_brown_dark"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailLayout" />
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/bottomnav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/black"
+        app:cnb_iconSize="24dp"
+        app:cnb_menuResource="@menu/bottom_nav_menu"
+        app:cnb_unselectedColor="#A0A0A0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/bottom_navigation_container"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="220dp"
-            android:layout_marginBottom="16dp" android:background="@drawable/rounded_bottom_navigation"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <LinearLayout
-                android:id="@+id/homeButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/homeIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_home"
-                    app:tint="@color/coffee_dark_text" />
-
-                <TextView
-                    android:id="@+id/homeText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Home"
-                    android:textColor="@color/coffee_beige_light"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/favoritesButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/favoritesIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_heart_outline"
-                    app:tint="@color/coffee_dark_text" />
-
-                <TextView
-                    android:id="@+id/favoritesText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Favorites"
-                    android:textColor="#A0A0A0"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/cartButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/cartIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_shopping_bag_outline"
-                    app:tint="@color/coffee_dark_text" />
-
-                <TextView
-                    android:id="@+id/cartText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cart"
-                    android:textColor="#A0A0A0"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/profileButton"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/profileIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_user_outline"
-                    app:tint="@color/coffee_dark_text" />
-
-                <TextView
-                    android:id="@+id/profileText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profile"
-                    android:textColor="#A0A0A0"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

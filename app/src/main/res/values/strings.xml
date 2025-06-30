@@ -2,5 +2,6 @@
     <string name="app_name">CoffeeBear</string>
 
     <string name="default_web_client_id">736960633059-f9rgom9fd7ijbsvsncmcig3987h3t4rj.apps.googleusercontent.com</string>
+    <string name="edit_profile">Edit Profile</string>
 
 </resources>

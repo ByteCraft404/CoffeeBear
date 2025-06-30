@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context=".SignupActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/img_signup_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="360dp"
+        android:src="@drawable/coffee1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageView
-            android:id="@+id/img_signup_background"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/your_form_banner_image"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <ImageView
+        android:id="@+id/img_wave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/wave"
+        app:layout_constraintBottom_toTopOf="@+id/scrollable_content_area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollable_content_area"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_wave"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content_area_signin"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="350dp"
-            android:background="@drawable/rounded_top_corners_shape"
+            android:background="@color/coffee_beige_light"
             android:backgroundTint="@color/coffee_brown_dark"
             android:paddingStart="32dp"
             android:paddingTop="24dp"
             android:paddingEnd="32dp"
-            android:paddingBottom="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:paddingBottom="24dp">
 
             <LinearLayout
                 android:id="@+id/tabs_layout_signup"
@@ -158,7 +172,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/coffee_dark_text"
@@ -178,9 +192,9 @@
                 android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/btn_signup_action"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/btn_signup_action">
 
                 <View
                     android:layout_width="0dp"
@@ -210,11 +224,12 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/social_login_separator"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.0">
+
                 <ImageView
                     android:id="@+id/icon_google_signin"
                     android:layout_width="40dp"
@@ -224,6 +239,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

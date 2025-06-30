@@ -1,99 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context=".SigninActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/img_signin_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="350dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/coffee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/img_signin_background"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/caramel"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <ImageView
+        android:id="@+id/img_wave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/wave"
+        app:layout_constraintBottom_toTopOf="@+id/scrollable_content_area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollable_content_area"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_wave"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content_area_signin"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:background="@drawable/rounded_top_corners_shape"
+            android:background="@color/black"
             android:backgroundTint="@color/coffee_brown_dark"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:paddingStart="32dp"
-            android:paddingEnd="32dp"
             android:paddingTop="24dp"
-            android:paddingBottom="24dp"> <LinearLayout
-            android:id="@+id/tabs_layout_signin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:paddingEnd="32dp"
+            android:paddingBottom="24dp">
 
             <LinearLayout
+                android:id="@+id/tabs_layout_signin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tv_signin_tab_on_signin"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="Sign In"
-                    android:textColor="@color/coffee_beige_light"
-                    android:textSize="29sp"
-                    android:textStyle="bold" />
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="4dp"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/coffee_dark_text" />
+                    <TextView
+                        android:id="@+id/tv_signin_tab_on_signin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Sign In"
+                        android:textColor="@color/coffee_beige_light"
+                        android:textSize="29sp"
+                        android:textStyle="bold" />
 
-            </LinearLayout>
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@color/coffee_dark_text" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_signup_tab_on_signin"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="Sign Up"
-                    android:textColor="@color/coffee_beige_light"
-                    android:textSize="18sp" />
+                    android:layout_marginStart="24dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-                <View
-                    android:layout_width="60dp"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@android:color/transparent" />
+                    <TextView
+                        android:id="@+id/tv_signup_tab_on_signin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Sign Up"
+                        android:textColor="@color/coffee_beige_light"
+                        android:textSize="18sp" />
 
+                    <View
+                        android:layout_width="60dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
             <EditText
                 android:id="@+id/et_email_signin"
@@ -116,31 +132,33 @@
             <EditText
                 android:id="@+id/et_password_signin"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/coffee_dark_text"
+                android:backgroundTintMode="add"
                 android:drawableStart="@drawable/ic_lock_placeholder"
                 android:drawablePadding="12dp"
-                android:backgroundTintMode="add"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:textColor="@color/coffee_white_text"
                 android:textColorHint="@color/coffee_dark_text"
-                app:layout_constraintTop_toBottomOf="@id/et_email_signin"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/et_email_signin" />
 
             <Button
                 android:id="@+id/btn_signin_action"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" android:layout_marginStart="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="40dp"
-                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/coffee_dark_text"
                 android:text="Sign In"
                 android:textColor="@color/coffee_white_text"
-                android:backgroundTint="@color/coffee_dark_text"
-                app:layout_constraintTop_toBottomOf="@id/et_password_signin"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/et_password_signin" />
 
             <TextView
                 android:id="@+id/tv_forgot_password"
@@ -149,9 +167,9 @@
                 android:layout_marginTop="16dp"
                 android:text="Forgot Password?"
                 android:textColor="@color/coffee_beige_light"
-                app:layout_constraintTop_toBottomOf="@id/btn_signin_action"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/btn_signin_action" />
 
             <LinearLayout
                 android:id="@+id/social_login_separator"
@@ -160,13 +178,14 @@
                 android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/tv_forgot_password"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/tv_forgot_password">
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp" android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
                     android:background="@color/coffee_dark_text" />
 
                 <TextView
@@ -178,7 +197,8 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp" android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
                     android:background="@color/coffee_dark_text" />
             </LinearLayout>
 
@@ -203,6 +223,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
