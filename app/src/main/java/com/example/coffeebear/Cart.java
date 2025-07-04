@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ismaeldivita.chipnavigation.ChipNavigationBar; // Import ChipNavigationBar
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,33 +36,15 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
     private ImageView backButton;
     private RecyclerView cartRecyclerView;
     private TextView totalAmountTextView;
-    private Button checkoutButton; // Fixed: Changed to Button
+    private Button checkoutButton;
     private CartAdapter cartAdapter;
     private List<CartItem> cartItemList;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-    // Bottom Navigation Views
-    private LinearLayout homeButton;
-    private LinearLayout favoritesButton;
-    private LinearLayout cartButton;
-    private LinearLayout profileButton;
-
-    private ImageView homeIcon;
-    private ImageView favoritesIcon;
-    private ImageView cartIcon;
-    private ImageView profileIcon;
-
-    private TextView homeText;
-    private TextView favoritesText;
-    private TextView cartText;
-    private TextView profileText;
-
-    private int colorCoffeeBeigeLight;
-    private int colorA0A0A0;
-    private int colorCoffeeDarkText;
-
+    // Chip Navigation Bar
+    private ChipNavigationBar bottomNavigationBar; // Use ChipNavigationBar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,35 +69,16 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
         backButton = findViewById(R.id.backButton);
         cartRecyclerView = findViewById(R.id.cartRecyclerView);
         totalAmountTextView = findViewById(R.id.totalAmount);
-        checkoutButton = findViewById(R.id.checkoutButton); // Assigned the Button here
+        checkoutButton = findViewById(R.id.checkoutButton);
 
-
-        // Initialize Bottom Navigation Views using the provided IDs
-        homeButton = findViewById(R.id.homeButton);
-        favoritesButton = findViewById(R.id.favoritesButton);
-        cartButton = findViewById(R.id.cartButton);
-        profileButton = findViewById(R.id.profileButton);
-
-        // Find ImageView and TextView within each LinearLayout
-        homeIcon = homeButton.findViewById(R.id.homeIcon); // Ensure these IDs exist in your XML
-        homeText = homeButton.findViewById(R.id.homeText);   // Ensure these IDs exist in your XML
-        favoritesIcon = favoritesButton.findViewById(R.id.favoritesIcon); // Ensure these IDs exist in your XML
-        favoritesText = favoritesButton.findViewById(R.id.favoritesText);   // Ensure these IDs exist in your XML
-        cartIcon = cartButton.findViewById(R.id.cartIcon); // Ensure these IDs exist in your XML
-        cartText = cartButton.findViewById(R.id.cartText);   // Ensure these IDs exist in your XML
-        profileIcon = profileButton.findViewById(R.id.profileIcon); // Ensure these IDs exist in your XML
-        profileText = profileButton.findViewById(R.id.profileText);   // Ensure these IDs exist in your XML
-
-        // Get color values from resources
-        colorCoffeeBeigeLight = getResources().getColor(R.color.coffee_beige_light, getTheme());
-        colorA0A0A0 = getResources().getColor(android.R.color.darker_gray, getTheme()); // Using darker_gray as a close alternative to #A0A0A0
-        colorCoffeeDarkText = getResources().getColor(R.color.coffee_dark_text, getTheme());
+        // Initialize Chip Navigation Bar
+        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar); // Match the ID from XML
 
         // Set up RecyclerView
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         cartItemList = new ArrayList<>();
         cartAdapter = new CartAdapter(cartItemList);
-        cartAdapter.setOnItemClickListener(this); // Set the listener
+        cartAdapter.setOnItemClickListener(this);
         cartRecyclerView.setAdapter(cartAdapter);
 
         // Back button functionality
@@ -134,37 +98,25 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
             // Implement your checkout logic here
         });
 
-        // Set up bottom navigation click listeners
-        homeButton.setOnClickListener(v -> navigateTo(MainActivity2.class));
-        favoritesButton.setOnClickListener(v -> navigateTo(Favourites.class)); // Replace with your Favorites Activity
-        cartButton.setOnClickListener(v -> {}); // Already on Cart Activity
-        profileButton.setOnClickListener(v -> navigateTo(profile.class)); // Replace with your Profile Activity
+        // Set up ChipNavigationBar listener
+        bottomNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int i) {
+                if (i == R.id.home) { // Make sure these match your @menu/bottom_nav_menu IDs
+                    navigateTo(MainActivity2.class);
+                } else if (i == R.id.favorites) {
+                    navigateTo(Favourites.class);
+                } else if (i == R.id.cart) {
+                    // Already on Cart Activity, do nothing or provide feedback
+                    // Toast.makeText(Cart.this, "You are already in Cart!", Toast.LENGTH_SHORT).show();
+                } else if (i == R.id.profile) {
+                    navigateTo(profile.class);
+                }
+            }
+        });
 
-        // Set default selected button to Cart and change its color
-        setDefaultSelected();
-    }
-
-    private void setDefaultSelected() {
-        // Reset colors of all buttons
-        if (homeIcon != null && homeText != null) {
-            homeIcon.setColorFilter(colorCoffeeDarkText);
-            homeText.setTextColor(colorCoffeeBeigeLight);
-        }
-
-        if (favoritesIcon != null && favoritesText != null) {
-            favoritesIcon.setColorFilter(colorCoffeeDarkText);
-            favoritesText.setTextColor(colorA0A0A0);
-        }
-
-        if (cartIcon != null && cartText != null) {
-            cartIcon.setColorFilter(colorCoffeeBeigeLight);
-            cartText.setTextColor(colorCoffeeBeigeLight);
-        }
-
-        if (profileIcon != null && profileText != null) {
-            profileIcon.setColorFilter(colorCoffeeDarkText);
-            profileText.setTextColor(colorA0A0A0);
-        }
+        // Set Cart item as selected by default
+        bottomNavigationBar.setItemSelected(R.id.cart, true); // Select the Cart item in the navigation bar
     }
 
     private void navigateTo(Class<?> destination) {
@@ -181,30 +133,31 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
 
             cartItemsRef.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     cartItemList.clear();
                     for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
-                        String productId = itemSnapshot.getKey(); // Get the product ID
+                        String productId = itemSnapshot.getKey();
                         String name = itemSnapshot.child("name").getValue(String.class);
                         Double price = itemSnapshot.child("price").getValue(Double.class);
                         Integer quantity = itemSnapshot.child("quantity").getValue(Integer.class);
-                        Integer imageResource = itemSnapshot.child("imageResource").getValue(Integer.class);
+                        // Using Long for imageResource from Firebase to avoid potential casting issues
+                        // and then converting to int if necessary
+                        Long imageResourceLong = itemSnapshot.child("imageResource").getValue(Long.class);
+                        int imageResource = (imageResourceLong != null) ? imageResourceLong.intValue() : -1;
 
-                        if (name != null && price != null && quantity != null && imageResource != null) {
-                            CartItem cartItem = new CartItem(productId, name, price, quantity, imageResource); // Include productId
+                        if (name != null && price != null && quantity != null) { // imageResource can be -1
+                            CartItem cartItem = new CartItem(productId, name, price, quantity, imageResource);
                             cartItemList.add(cartItem);
-                        } else if (name != null && price != null && quantity != null) {
-                            CartItem cartItem = new CartItem(productId, name, price, quantity, -1); // Include productId
-                            cartItemList.add(cartItem);
-                            Log.w("CartActivity", "Image resource not found for item: " + name);
+                        } else {
+                            Log.w("CartActivity", "Missing data for cart item: " + productId);
                         }
                     }
                     cartAdapter.notifyDataSetChanged();
-                    updateTotalPriceDisplay(); // Update total after items are loaded
+                    updateTotalPriceDisplay();
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
                     Toast.makeText(Cart.this, "Failed to fetch cart items: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -219,7 +172,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
 
             totalPriceRef.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     Double totalPrice = dataSnapshot.getValue(Double.class);
                     if (totalPrice != null) {
                         totalAmountTextView.setText(String.format("%.2f", totalPrice));
@@ -229,7 +182,7 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
                     Toast.makeText(Cart.this, "Failed to fetch total price: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -242,7 +195,6 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
             total += item.price * item.quantity;
         }
         totalAmountTextView.setText(String.format("%.2f", total));
-        // Optionally update the totalPrice in Firebase here as well
         updateCartTotalInFirebase();
     }
 
@@ -255,7 +207,6 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
                 cartAdapter.notifyItemChanged(position);
                 updateTotalPriceDisplay();
             } else {
-                // If quantity becomes 0, you might want to remove the item
                 deleteCartItem(position);
             }
         }
@@ -306,12 +257,10 @@ public class Cart extends AppCompatActivity implements CartAdapter.OnItemClickLi
         if (currentQuantity > 1) {
             updateCartItemQuantity(position, currentQuantity - 1);
         } else {
-            // If quantity is 1 and decrease is clicked, you might want to remove the item
             deleteCartItem(position);
         }
     }
 
-    // Modified CartItem model class to include productId:
     public static class CartItem {
         public String productId;
         public String name;

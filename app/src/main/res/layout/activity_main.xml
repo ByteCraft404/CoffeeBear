@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="CoffeeBear."
         android:textStyle="bold"
-        android:textColor="#00897B"
+        android:textColor="@color/coffee_dark_text"
         android:textSize="29sp"
         android:layout_marginBottom="8dp" />
 
@@ -30,7 +30,7 @@
         android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Brewing Perfection:\nIntroducing the Ultimate\nCoffee Companion App!"
+        android:text="Brewing Perfection:\nIntroducing the Ultimate\nCoffee Companion App"
         android:textColor="@color/coffee_beige_light"
         android:textSize="24sp"
         android:textStyle="bold"

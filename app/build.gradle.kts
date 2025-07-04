@@ -41,20 +41,18 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
+    implementation(platform(libs.firebase.bom))
 
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
+    implementation(libs.google.firebase.database)
+    implementation(libs.google.firebase.auth)
+    implementation(libs.google.firebase.firestore)
 
-    implementation("com.google.android.gms:play-services-auth:21.3.0")
+    implementation(libs.play.services.auth)
 
-    implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
-
-    implementation("com.ismaeldivita.chipnavigation:chip-navigation-bar:1.4.0")
-
+    implementation(libs.circleimageview)
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+    implementation("com.github.IsmaelDivita:chip-navigation-bar:1.4.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

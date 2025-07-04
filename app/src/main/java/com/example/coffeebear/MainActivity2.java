@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull; // Added for Firebase callbacks
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -22,6 +23,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.ismaeldivita.chipnavigation.ChipNavigationBar; // Import ChipNavigationBar
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,19 +40,20 @@ public class MainActivity2 extends AppCompatActivity {
     private HorizontalScrollView coffeeScrollView;
     private LinearLayout coffeeLinearLayout;
     private CardView latteCardView, espressoCardView, cappuccinoCardView;
-    private ImageView addButtonLatte, addButtonEspresso, addButtonCappuccino, addButtonBurger, addButtonFrenchToast;
-    private Button latteButton, espressoButton, cappuccinoButton;
+    private ImageView addButtonLatte, addButtonEspresso, addButtonCappuccino; // Removed burger/french toast as they are found dynamically
     private EditText searchEditText;
-    private LinearLayout homeButtonLayout, favoritesButtonLayout, cartButtonLayout, profileButtonLayout;
     private LinearLayout specialOfferLinearLayout;
 
     private Button currentSelectedCoffeeButton = null;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
+    // Chip Navigation Bar
+    private ChipNavigationBar bottomNavigationBar; // Use ChipNavigationBar
+
     // Define product details here (replace with your actual data source)
     private Map<String, Product> productMap = new HashMap<>();
-    private Map<String, Integer> productImageMap = new HashMap<>(); // ADDED: Map for product images
+    private Map<String, Integer> productImageMap = new HashMap<>();
 
     // TextViews for prices
     private TextView lattePriceTextView;
@@ -64,6 +67,8 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
+        // Note: FLAG_FULLSCREEN and SYSTEM_UI_FLAG_HIDE_NAVIGATION are deprecated in newer Android versions
+        // and might be handled better with WindowInsetsController for Android 11+
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -91,14 +96,13 @@ public class MainActivity2 extends AppCompatActivity {
         addButtonCappuccino = findViewById(R.id.addButtonCappuccino);
         Log.d("MainActivity2", "addButtonCappuccino: " + addButtonCappuccino);
         searchEditText = findViewById(R.id.searchEditText);
-        latteButton = findViewById(R.id.latteButton);
-        espressoButton = findViewById(R.id.espressoButton);
-        cappuccinoButton = findViewById(R.id.cappuccinoButton);
-        homeButtonLayout = findViewById(R.id.homeButton);
-        favoritesButtonLayout = findViewById(R.id.favoritesButton);
-        cartButtonLayout = findViewById(R.id.cartButton);
-        profileButtonLayout = findViewById(R.id.profileButton);
-        specialOfferLinearLayout = findViewById(R.id.specialOfferLinearLayout); // Get LinearLayout directly
+        Button latteButton = findViewById(R.id.latteButton); // Local variable as it's only used in onCreate
+        Button espressoButton = findViewById(R.id.espressoButton); // Local variable
+        Button cappuccinoButton = findViewById(R.id.cappuccinoButton); // Local variable
+        specialOfferLinearLayout = findViewById(R.id.specialOfferLinearLayout);
+
+        // Initialize Chip Navigation Bar
+        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar); // Match the ID from XML
 
         // Get references to price TextViews
         lattePriceTextView = findViewById(R.id.lattePriceTextView);
@@ -115,11 +119,11 @@ public class MainActivity2 extends AppCompatActivity {
         productMap.put("frenchToast", new Product("French Toast", 0.0));
 
         // Initialize the map of product IDs to their drawable resource IDs
-        productImageMap.put("latte", R.drawable.latte); // Replace 'latte' with your actual drawable name
-        productImageMap.put("espresso", R.drawable.espresso); // Replace 'espresso' with your actual drawable name
-        productImageMap.put("cappuccino", R.drawable.cappuchino); // Replace 'cappuccino' with your actual drawable name
-        productImageMap.put("burger", R.drawable.burger); // Replace 'burger' with your actual drawable name
-        productImageMap.put("frenchToast", R.drawable.frenchtoast); // Replace 'french_toast' with your actual drawable name
+        productImageMap.put("latte", R.drawable.latte);
+        productImageMap.put("espresso", R.drawable.espresso);
+        productImageMap.put("cappuccino", R.drawable.cappuchino);
+        productImageMap.put("burger", R.drawable.burger);
+        productImageMap.put("frenchToast", R.drawable.frenchtoast);
 
         // Set Initial State (Espresso selected)
         selectCoffeeButton(espressoButton);
@@ -143,13 +147,30 @@ public class MainActivity2 extends AppCompatActivity {
             centerScrollViewOnView(cappuccinoCardView);
         });
 
-        // Navigation Button Click Listeners
-        homeButtonLayout.setOnClickListener(v -> navigateToDashboard(MainActivity2.class));
-        favoritesButtonLayout.setOnClickListener(v -> navigateToDashboard(Favourites.class));
-        cartButtonLayout.setOnClickListener(v -> navigateToDashboard(Cart.class));
-        profileButtonLayout.setOnClickListener(v -> navigateToDashboard(profile.class));
+        // Set up ChipNavigationBar listener
+        bottomNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int i) {
+                if (i == R.id.home) { // Make sure these match your @menu/bottom_nav_menu IDs
+                    // Already on MainActivity2, do nothing or provide feedback
+                    // Toast.makeText(MainActivity2.this, "You are already home!", Toast.LENGTH_SHORT).show();
+                } else if (i == R.id.favorites) {
+                    navigateTo(Favourites.class);
+                } else if (i == R.id.cart) {
+                    navigateTo(Cart.class);
+                } else if (i == R.id.profile) {
+                    navigateTo(profile.class);
+                }
+            }
+        });
+
+        // Set Home item as selected by default
+        bottomNavigationBar.setItemSelected(R.id.home, true); // Select the Home item in the navigation bar
 
         // Add Button Click Listeners (Special Offers - Corrected)
+        ImageView addButtonBurger = null; // Declare here
+        ImageView addButtonFrenchToast = null; // Declare here
+
         ConstraintLayout burgerCardView = specialOfferLinearLayout.findViewById(R.id.burgerCardView);
         if (burgerCardView != null) {
             addButtonBurger = burgerCardView.findViewById(R.id.addButtonBurger);
@@ -198,8 +219,6 @@ public class MainActivity2 extends AppCompatActivity {
                 // Do nothing
             }
         });
-
-        // Remove the OnScrollChangeListener for coffeeScrollView
     }
 
     private void handleAddToCart(String productId) {
@@ -209,7 +228,7 @@ public class MainActivity2 extends AppCompatActivity {
             if (product != null) {
                 double price = 0.0;
                 String name = product.name;
-                Integer imageResource = productImageMap.get(productId); // Get the image resource ID
+                Integer imageResource = productImageMap.get(productId);
 
                 switch (productId) {
                     case "latte":
@@ -229,9 +248,9 @@ public class MainActivity2 extends AppCompatActivity {
                         break;
                 }
                 if (imageResource != null) {
-                    addToCart(productId, name, price, imageResource); // Pass the image resource ID
+                    addToCart(productId, name, price, imageResource);
                 } else {
-                    addToCart(productId, name, price, -1); // Or some default value if no image
+                    addToCart(productId, name, price, -1);
                 }
             } else {
                 Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
@@ -250,12 +269,11 @@ public class MainActivity2 extends AppCompatActivity {
 
             cartItemsRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         Integer currentQuantity = dataSnapshot.child("quantity").getValue(Integer.class);
                         if (currentQuantity != null) {
                             cartItemsRef.child("quantity").setValue(currentQuantity + 1);
-                            // Consider updating image if needed, but likely not
                             updateCartTotal(userId);
                             Toast.makeText(MainActivity2.this, name + " quantity updated in Cart", Toast.LENGTH_SHORT).show();
                         }
@@ -264,7 +282,7 @@ public class MainActivity2 extends AppCompatActivity {
                         cartItem.put("name", name);
                         cartItem.put("price", price);
                         cartItem.put("quantity", 1);
-                        cartItem.put("imageResource", imageResource); // Store the image resource ID
+                        cartItem.put("imageResource", imageResource);
                         cartItemsRef.setValue(cartItem);
                         updateCartTotal(userId);
                         Toast.makeText(MainActivity2.this, name + " added to Cart", Toast.LENGTH_SHORT).show();
@@ -272,7 +290,7 @@ public class MainActivity2 extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
                     Toast.makeText(MainActivity2.this, "Failed to add to cart: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -286,7 +304,7 @@ public class MainActivity2 extends AppCompatActivity {
         DatabaseReference cartRef = mDatabase.child("carts").child(userId).child("cartItems");
         cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 double total = 0;
                 for (DataSnapshot itemSnapshot : dataSnapshot.getChildren()) {
                     Double price = itemSnapshot.child("price").getValue(Double.class);
@@ -299,19 +317,20 @@ public class MainActivity2 extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle error
+                Log.e("MainActivity2", "Failed to update cart total: " + databaseError.getMessage());
             }
         });
     }
 
     private void selectCoffeeButton(Button selectedButton) {
         if (currentSelectedCoffeeButton != null) {
-            currentSelectedCoffeeButton.setBackgroundTintList(getResources().getColorStateList(R.color.coffee_dark_text));
-            currentSelectedCoffeeButton.setTextColor(getResources().getColor(R.color.coffee_beige_light));
+            currentSelectedCoffeeButton.setBackgroundTintList(getResources().getColorStateList(R.color.coffee_dark_text, getTheme()));
+            currentSelectedCoffeeButton.setTextColor(getResources().getColor(R.color.coffee_beige_light, getTheme()));
         }
-        selectedButton.setBackgroundTintList(getResources().getColorStateList(R.color.coffee_brown_dark));
-        selectedButton.setTextColor(getResources().getColor(android.R.color.white));
+        selectedButton.setBackgroundTintList(getResources().getColorStateList(R.color.coffee_brown_dark, getTheme()));
+        selectedButton.setTextColor(getResources().getColor(android.R.color.white, getTheme()));
         currentSelectedCoffeeButton = selectedButton;
     }
 
@@ -321,9 +340,11 @@ public class MainActivity2 extends AppCompatActivity {
         coffeeScrollView.post(() -> coffeeScrollView.smoothScrollTo(scrollX, 0));
     }
 
-    private void navigateToDashboard(Class<?> dashboardClass) {
-        Intent intent = new Intent(MainActivity2.this, dashboardClass);
+    private void navigateTo(Class<?> destinationClass) {
+        Intent intent = new Intent(MainActivity2.this, destinationClass);
         startActivity(intent);
+        // If you want to finish MainActivity2 when navigating away, uncomment the line below.
+        // finish();
     }
 
     private void filterItems(String searchText) {
@@ -357,7 +378,7 @@ public class MainActivity2 extends AppCompatActivity {
     private void filterSpecialOffers(String searchText) {
         for (int i = 0; i < specialOfferLinearLayout.getChildCount(); i++) {
             View cardView = specialOfferLinearLayout.getChildAt(i);
-            if (cardView instanceof CardView) {
+            if (cardView instanceof ConstraintLayout) { // Special offer items are ConstraintLayouts
                 TextView nameTextView = null;
                 if (cardView.getId() == R.id.burgerCardView) {
                     nameTextView = cardView.findViewById(R.id.burgerNameTextView);
@@ -375,12 +396,13 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     private double parsePrice(String priceString) throws NumberFormatException {
-        // Remove currency symbol and any other non-numeric characters
         String cleanedPrice = priceString.replaceAll("[^\\d.]", "");
+        if (cleanedPrice.isEmpty()) { // Handle empty string case
+            return 0.0;
+        }
         return Double.parseDouble(cleanedPrice);
     }
 
-    // Simple Product class
     public static class Product {
         public String name;
         public double price;
